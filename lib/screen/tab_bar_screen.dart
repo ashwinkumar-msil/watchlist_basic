@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'categoreis_screen.dart';
+import 'package:watchlist_basic/screen/categoreis_screen.dart';
+import 'package:watchlist_basic/strings.dart';
 
 class TabBarScreen extends StatelessWidget {
   const TabBarScreen({Key? key}) : super(key: key);
@@ -11,15 +12,9 @@ class TabBarScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Watchlist'),
+          title: const Text(Strings.Apptitle),
           bottom: const TabBar(
-            tabs: [
-              Tab(text: "Contact 1"),
-              Tab(text: "Contact 2"),
-              Tab(
-                text: 'Contact 3',
-              )
-            ],
+            tabs: Strings.name,
           ),
         ),
         body: const TabBarView(

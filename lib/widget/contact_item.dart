@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'contact_data_model.dart';
+import 'package:watchlist_basic/model/contact_data_model.dart';
 
 Widget userList(BuildContext context, int index, List<Contact> data) {
   return Container(

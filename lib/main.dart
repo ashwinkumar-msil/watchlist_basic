@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'categoreis_screen.dart';
-import 'tab_bar.dart';
+import 'package:watchlist_basic/screen/tab_bar_screen.dart';
 
 void main() => runApp(const MyApp());
 
