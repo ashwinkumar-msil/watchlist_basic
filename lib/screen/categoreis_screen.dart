@@ -23,7 +23,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Future<void> fetchAlbum() async {
     final response = await http.get(Uri.parse(Strings.contact_list_url));
     try {
-      this.setState(() {
+      setState(() {
         contactdata = contactFromJson(response.body);
       });
 
