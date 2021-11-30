@@ -11,4 +11,9 @@ class Strings {
   ];
   static const contact_list_url =
       'https://5e53a76a31b9970014cf7c8c.mockapi.io/msf/getContacts';
+
+  static const String noInternet = 'No Internet connection';
+  static const String noData = "No data Available";
+  static const String dataException =
+      'Error occured while Communication with Server with StatusCode :';
 }

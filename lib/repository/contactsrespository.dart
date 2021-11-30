@@ -8,7 +8,7 @@ class ContactsRespository {
   final Api_call _provider = Api_call();
 
   Future<List<Contact>> getContacts() async {
-    List<Contact> contacts = [];
+    var contacts;
     try {
       final response = await _provider.get(Strings.contact_list_url);
       contacts = contactFromJson(response);

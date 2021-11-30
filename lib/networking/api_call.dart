@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:http/http.dart' as http;
-
-import 'dart:convert';
 import 'dart:async';
+import 'package:watchlist_basic/strings.dart';
 
 class Api_call {
   Future<dynamic> get(String url) async {
@@ -12,14 +10,14 @@ class Api_call {
       final response = await http.get(Uri.parse(url));
       responseJson = _response(response);
     } on SocketException {
-      throw Exception('No Internet connection');
+      throw Exception(Strings.noInternet);
     }
     return responseJson;
   }
 
   dynamic _response(http.Response response) {
     if (response.body.isEmpty) {
-      throw Exception("No data Available");
+      throw Exception(Strings.noData);
     }
     switch (response.statusCode) {
       case 445:
@@ -36,24 +34,7 @@ class Api_call {
       case 500:
 
       default:
-        throw Exception(
-            'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
+        throw Exception(Strings.dataException + '${response.statusCode}');
     }
   }
 }
-
-// class Api_call {
-//   static Future<List<Contacts>> getContacts() async {
-//     List<Contacts> contacts = [];
-//     try {
-//       final response = await get(Uri.parse(Strings.contacts_url));
-//       if (200 == response.statusCode) {
-//         contacts = contactsFromJson(response.body);
-//         return contacts;
-//       } else {}
-//       return contacts;
-//     } catch (e) {}
-//     return contacts;
-//   }
-//}
-
