@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:watchlist_basic/model/contact_data_model.dart';
-import 'package:watchlist_basic/strings.dart';
+import 'package:watchlist_basic/repository/contactsrespository.dart';
 import 'package:watchlist_basic/widget/contact_item.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -13,25 +12,16 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  ContactsRespository repo = ContactsRespository();
+  List<Contact> contactdata = [];
   @override
   void initState() {
     super.initState();
-    fetchAlbum();
-  }
-
-  List<Contact> contactdata = [];
-  Future<void> fetchAlbum() async {
-    final response = await http.get(Uri.parse(Strings.contact_list_url));
-    try {
+    repo.getContacts().then((contacts) {
       setState(() {
-        contactdata = contactFromJson(response.body);
+        contactdata = contacts;
       });
-
-      debugPrint(contactdata[1].name);
-    } catch (error) {
-      // ignore: avoid_print
-      print(error);
-    }
+    });
   }
 
   @override
@@ -46,7 +36,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           height: MediaQuery.of(context).size.height,
           width: double.infinity,
           child: ListView.builder(
-              itemCount: contactdata.length == null ? 0 : contactdata.length,
+              itemCount: contactdata.length,
               itemBuilder: (
                 BuildContext context,
                 int i,
